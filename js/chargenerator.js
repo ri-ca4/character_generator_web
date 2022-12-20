@@ -58,19 +58,27 @@ function statRoll (){//simulates rolling 4 d6, dropping lowest, and adding the r
     return stat
 }
 
+
 //roll for ... functions
-function rollForRace(){
+function rollForDnDRace(){
     var races = dnd.races;
     var rand = Math.floor(Math.random() * races.length);
     var race = races[rand];
     return race
 }
 
-function rollForClass(){
+function rollForDnDClass(){
     var classes = dnd.classes;
     var rand = Math.floor(Math.random() * classes.length);
     var _class = classes[rand];
     return _class
+}
+
+function rollForWoW(){
+    var races = Object.keys(WoW)
+    var race = races[Math.floor(Math.random() * races.length)]
+    var _class = WoW[race][Math.floor(Math.random()* WoW[race].length)]
+    return [race, _class]
 }
 
 function rollForGender(){
@@ -121,10 +129,24 @@ function rollForStats(){
 }
 
 //create character class
-class Character {
+class DnDCharacter {
     constructor(){
-        this.race = rollForRace(),
-        this.class = rollForClass(),
+        this.race = rollForDnDRace(),
+        this.class = rollForDnDClass(),
+        this.gender = rollForGender(),
+        this.align = rollForAlignment(),
+        this.motive = rollForMotive(),
+        this.flaw = rollForFlaw(),
+        this.person = rollForPersonality(),
+        this.stats = rollForStats()
+    }
+}
+
+class WoWCharacter {
+    constructor(){
+        const [race, _class] = rollForWoW()
+        this.race = race,
+        this.class = _class,
         this.gender = rollForGender(),
         this.align = rollForAlignment(),
         this.motive = rollForMotive(),
@@ -136,7 +158,7 @@ class Character {
 
 function generate(){//generate new character and display
 //New character
-    var char = new Character;
+    var char = new WoWCharacter;
 
 //Display in DOM
     document.getElementById('race').innerHTML = char.race;
