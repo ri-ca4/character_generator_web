@@ -75,9 +75,9 @@ function rollForDnDClass(){
 }
 
 function rollForWoW(){
-    var races = Object.keys(WoW)
+    var races = Object.keys(WoW)//get just the races
     var race = races[Math.floor(Math.random() * races.length)]
-    var _class = WoW[race][Math.floor(Math.random()* WoW[race].length)]
+    var _class = WoW[race][Math.floor(Math.random()* WoW[race].length)]//get random class from race's array
     return [race, _class]
 }
 
@@ -157,9 +157,23 @@ class WoWCharacter {
 }
 
 function generate(){//generate new character and display
+    var game;
+    var radios = document.getElementsByName('choose');
+    for(const f of radios){
+        if (f.checked){
+            game = f.value
+        }
+    }
+    console.log(game)
 //New character
-    var char = new WoWCharacter;
+    var char;
+    if(game == 'dnd'){
+        char = new DnDCharacter
+    }
 
+    if(game == 'wow'){
+        char = new WoWCharacter
+    }
 //Display in DOM
     document.getElementById('race').innerHTML = char.race;
     document.getElementById('class').innerHTML = char.class;
