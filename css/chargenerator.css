@@ -61,6 +61,32 @@ button{
     padding: 1vh;
 }
 
+#input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+#choose{
+    background-color: #ffffff50;
+}
+
+#radios{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
 
 
 @media screen and (min-width: 600px){
